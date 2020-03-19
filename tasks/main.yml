@@ -1,2 +1,38 @@
 ---
-# tasks file for ansible-role-alpha29-fasttree
+- name: update everything (yum)
+  when:
+    - ansible_os_family == 'RedHat'
+  yum:
+    update_cache: yes
+    name: '*'
+    state: latest
+
+- name: update everything (apt)
+  when:
+    - ansible_os_family == 'Debian'
+  apt:
+    update_cache: yes
+    name: '*'
+    state: latest
+
+- name: install build tools
+  include_role:
+    name: robertdebock.buildtools
+
+- name: clone git repo
+  git:
+    repo: https://github.com/tsibley/FastTree
+    dest: /opt
+
+- name: run make
+  # bypass idempotence check
+  changed_when: false
+  make:
+    chdir: /opt/FastTree
+    params: FastTreeDblMP
+
+- name: create link
+  file:
+    src: "/opt/FastTree/FastTreeDblMP"
+    dest: "/usr/bin/FastTreeDblMP"
+    state: link    
