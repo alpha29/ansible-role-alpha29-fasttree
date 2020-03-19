@@ -19,6 +19,17 @@
   include_role:
     name: robertdebock.buildtools
 
+- name: check if git is installed
+  command: "git --version"
+  register: git_installed
+  ignore_errors: yes
+
+- name: install git
+  when: git_installed.rc != 0
+  package:
+    name: git
+    state: present
+
 - name: clone git repo
   git:
     repo: https://github.com/tsibley/FastTree
