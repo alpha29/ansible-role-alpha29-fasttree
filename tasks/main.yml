@@ -40,7 +40,7 @@
   changed_when: false
   make:
     chdir: /opt/FastTree
-    params: FastTreeDblMP
+    target: FastTreeDblMP
 
 - name: create link
   file:
