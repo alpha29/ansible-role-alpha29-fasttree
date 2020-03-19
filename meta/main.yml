@@ -24,6 +24,9 @@ galaxy_info:
     # NOTE: A tag is limited to a single word comprised of alphanumeric characters.
     #       Maximum 20 tags per role.
 
-dependencies: []
-  # List your role dependencies here, one per line. Be sure to remove the '[]' above,
-  # if you add dependencies to this list.
+# Ansible's built-in, magical 'never' tag means Galaxy will download these roles,
+# but won't run them until a playbook explicitly calls them
+dependencies:
+  - src: robertdebock.buildtools
+    version: 2.3.1
+    tags: never
