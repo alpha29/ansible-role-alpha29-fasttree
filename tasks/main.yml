@@ -1,19 +1,16 @@
 ---
-- name: update everything (yum)
+- name: update cache (yum)
   when:
     - ansible_os_family == 'RedHat'
   yum:
     update_cache: yes
-    name: '*'
-    state: latest
 
-- name: update everything (apt)
+- name: update cache (apt)
   when:
     - ansible_os_family == 'Debian'
   apt:
     update_cache: yes
-    name: '*'
-    state: latest
+    cache_valid_time: 3600
 
 - name: install build tools
   include_role:
