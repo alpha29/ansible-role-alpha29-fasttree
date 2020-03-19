@@ -20,9 +20,11 @@
     name: robertdebock.buildtools
 
 - name: check if git is installed
-  command: "which git"
+  command: "git --version"
   register: git_installed
   ignore_errors: yes
+  # bypass idempotence check
+  changed_when: false
 
 - name: install git
   when: git_installed.rc != 0
