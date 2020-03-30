@@ -1,5 +1,6 @@
 ansible-role-alpha29-fasttree
 =========
+[![Build Status](https://travis-ci.org/alpha29/ansible-role-alpha29-fasttree.svg?branch=master)](https://travis-ci.org/alpha29/ansible-role-alpha29-fasttree)
 
 Installs [FastTree](http://www.microbesonline.org/fasttree/), a tool to infer approximately-maximum-likelihood phylogenetic trees from alignments of nucleotide or protein sequences.
 
@@ -12,7 +13,7 @@ This role requires root access, so either run it in a playbook with a global `be
 
     - hosts: localhost
       roles:
-        - role: ansible-role-alpha29-fasttree
+        - role: alpha29.fasttree
           become: yes
 
 Role Variables
@@ -40,6 +41,7 @@ Development
 ------------
 ```
 # Setup:
+git clone git@github.com:alpha29/ansible-role-alpha29-fasttree.git alpha29.fasttree
 python3.7 -m venv env
 source env/bin/activate
 pip install --upgrade pip
@@ -82,4 +84,4 @@ MIT
 Author Information
 ------------------
 
-C.J. Brown (cbrown@alpha29.com)
+<info@alpha29.com>
